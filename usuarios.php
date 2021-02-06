@@ -1,3 +1,8 @@
+<?php
+
+include "./php/coneccion.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,23 +58,35 @@
             </button>
           </div>
         </div>
+        </div>
         <div class="card-body">
-          <form action="">
+        <?php
+                if(isset($_GET['error'])){
+
+        ?>
+                  <div class="alert alert-danger">
+                    <b>Error:</b><?php echo $_GET['error'];?>
+                  </div>
+        <?php
+                }   
+              
+        ?>
+          <form action="./php/insertarUsuario.php" class="row" method="POST">
               <div class="col-4">
                   <label for="">Nombre</label>
-                  <input type="text" class="form-control" placeholder="Inserta tu nombre">
+                  <input type="text" class="form-control" placeholder="Inserta tu nombre" name="nom" id="txtNombre" required>
               </div>
               <div class="col-4">
                   <label for="">Apellido</label>
-                  <input type="text" class="form-control" placeholder="Inserta tu apellido">
+                  <input type="text" class="form-control" placeholder="Inserta tu apellido" name="ap" id="txtAP" required>
               </div>
               <div class="col-4">
                   <label for="">Email</label>
-                  <input type="email" class="form-control" placeholder="Inserta tu email">
+                  <input type="email" class="form-control" placeholder="Inserta tu email" name="email" required>
               </div>
               <div class="col-4">
                   <label for="">Password</label>
-                  <input type="password" class="form-control" placeholder="Inserta tu password">
+                  <input type="password" class="form-control" placeholder="Inserta tu password" name="p1" required>
               </div>
               <div class="col-4">
                       <label for="">Confirmar Password</label>
