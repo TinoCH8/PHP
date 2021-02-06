@@ -131,7 +131,7 @@
                   <th>Id</th>
                   <th>Nombre</th>
                   <th>precio</th>
-                  <th>enventario</th>
+                  <th>inventario</th>
                   <th></th>
               </thead>
               <tbody>

@@ -12,10 +12,10 @@
         if(move_uploaded_file($_FILES['imagen']['tmp_name'], "../img/product/".$nombreFinal ) ){
             
             $conexion -> query("
-            insert into productos (nombre, precio
-            ,inventario, imagen) values ('$nombre',$precio,$inve,'$nombreFinal')") or die ($conexion -> error);
+            insert into productos (nombre, precio, inventario, imagen) values ('$nombre',$precio,$inve,'$nombreFinal')")
+             or die ($conexion -> error);
 
-            header("location: ../productos.php?success=el producto a sido registrado con exito");
+            header("location: ../productos.php?success=archivo subido correctamente");
 
         }else{
             header("location: ../productos.php?error=ocurrio un error al subir la imagen");
