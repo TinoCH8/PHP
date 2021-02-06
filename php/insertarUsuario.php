@@ -1,6 +1,7 @@
+
 <?php
 
-include "./coneccion.php";
+include "./conexion.php";
 
 $nombre = $_POST['nom'];  
 $ap = $_POST['ap'];  

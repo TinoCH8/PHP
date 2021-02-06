@@ -1,9 +1,10 @@
+
 <?php
 
 $servidor='localhost';
 $nombreBD='escuela';
-$usuario='root';
-$pass='';
+$usuario='admin';
+$pass='eSS)tIysDZbLT#%384tM';
 $conexion = new mysqli($servidor, $usuario, $pass, $nombreBD);
 
 if($conexion -> connect_error){
