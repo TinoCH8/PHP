@@ -1,9 +1,14 @@
 
 <?php
-
+/* tecnologytiendach88.000webhostapp.com
+ tecnologytiendach88.000webhostapp.com
+ tecnologytiendach88.000webhostapp.com
+ tecnologytiendach88.000webhostapp.com
+ tecnologytiendach88.000webhostapp.com
+ */
 $servidor='localhost';
-$nombreBD='escuela';
-$usuario='admin';
+$nombreBD='id16099333_tiendatecnologych88';
+$usuario='id16099333_admin';
 $pass='eSS)tIysDZbLT#%384tM';
 $conexion = new mysqli($servidor, $usuario, $pass, $nombreBD);
 

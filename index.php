@@ -1,9 +1,9 @@
 
 <?php
 session_start();
-if(!isset($_SESSION['uData'])){
+/*if(!isset($_SESSION['uData'])){
   header("Location: ./login.php");
-  }
+  }*/
 $userData=$_SESSION['uData'];
 ?>
 
