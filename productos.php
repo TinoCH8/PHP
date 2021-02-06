@@ -1,58 +1,61 @@
 <?php
-session_start();
-if(!isset($_SESSION['uData'])){
-header("Location: ./login.php");
-}
+  session_start();
+  if(!isset($_SESSION['uData'])){
+  header("Location: ./login.php");
+  }
+  include "./php/conexion.php";
 
-include "./php/conexion.php";
-$resultado= $conexion->query("select * from usuarios order by id DESC")or die($conexion->error);
+  $resultado= $conexion->query("select * from productos order by id DESC")or die($conexion->error);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mi Tienda</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi tienda</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="./dashboard/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="./dashboard/dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-  <!-- Navbar -->
-  <?php include "./layouts/header.php"; ?>
-  <!-- /.navbar -->
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../dashboard/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dashboard/dist/css/adminlte.min.css">
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+    
+    <!-- Navbar -->
+    <?php include "./layouts/header.php"?>
+    <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  <?php include "./layouts/sidebar.php"; ?>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Usuarios</h1>
+    <!-- Main Sidebar Container -->
+    <?php include "./layouts/sidebar.php"?>
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>
+                  Producto
+              </h1>
+            </div>
           </div>
-          
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+        </div><!-- /.container-fluid -->
+      </section>
 
-    <!-- Main content -->
-    <section class="content">
+      <!-- Main content -->
+      <section class="content">
 
-      <!-- Default box -->
-      <div class="card">
+        <!-- Default box -->
+        <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Agregar Usuario</h3>
+            <h3 class="card-title">Agregar producto</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -67,7 +70,9 @@ $resultado= $conexion->query("select * from usuarios order by id DESC")or die($c
           <div class="card-body">
               <?php
                 if(isset($_GET['error'])){
+              
                 echo ''
+
               ?>
                   <div class="alert alert-danger">
                     <b>Error:</b>
@@ -78,7 +83,10 @@ $resultado= $conexion->query("select * from usuarios order by id DESC")or die($c
                   </div>
                 <?php
                 }   
+              
                 if(isset($_GET['success'])){
+          
+
               ?>
                   <div class="alert alert-success">
                     <b>Listo!</b>
@@ -88,48 +96,42 @@ $resultado= $conexion->query("select * from usuarios order by id DESC")or die($c
                   </div>
                 <?php
                 }   
-              
-        ?>
-          <form action="./php/insertarUsuario.php" class="row" method="POST">
-              <div class="col-4">
-                  <label for="">Nombre</label>
-                  <input type="text" class="form-control" placeholder="Inserta tu nombre" name="nom" id="txtNombre" required>
-              </div>
-              <div class="col-4">
-                  <label for="">Apellido</label>
-                  <input type="text" class="form-control" placeholder="Inserta tu apellido" name="ap" id="txtAP" required>
-              </div>
-              <div class="col-4">
-                  <label for="">Email</label>
-                  <input type="email" class="form-control" placeholder="Inserta tu email" name="email" required>
-              </div>
-              <div class="col-4">
-                  <label for="">Password</label>
-                  <input type="password" class="form-control" placeholder="Inserta tu password" name="p1" required>
-              </div>
-              <div class="col-4">
-                      <label for="">Confirmar Password</label>
-                      <input type="password" class="form-control" placeholder="confirma tu password" name="p2" required>
+              ?>
+              <form action="./php/insertarProducto.php" class="row" method="POST" enctype="multipart/form-data">
+                  <div class="col-4">
+                      <label for="">Nombre</label>
+                      <input type="text" class="form-control" placeholder="inserta tu nombre" name="nom" id="txtnombre" required>
                   </div>
-              <div class="col-4 p-2">
-                      <br>
-                      <button class="btn btn-primary"><i class="fa fa-plus"></i> insertar</button>                   
-               </div>
-          </form>
-        </div>
-        <!-- /.card-body -->
-        
-        <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
+                  <div class="col-4"> 
+                      <label for="">precio</label>
+                      <input type="number" class="form-control" placeholder="inserta el precio" name="precio" id="txtprecio" required> 
+                  </div>
+                  <div class="col-4">
+                      <label for="">inventario</label>
+                      <input type="number" class="form-control" placeholder="inserta el inventario" min="1" name="inventario" required>
+                  </div> 
+                  <div class="col-4">
+                      <label for="">Imagen</label>
+                      <input type="file" class="form-control" placeholder="inserta una password" name="imagen" required>
+                  </div>  
+                  <div class="col-12 p-2">
+                  <br>
+                  <button class="btn btn-primary"><i class="fa fa-plus"></i> insertar</button>                   
+                  </div>
 
-      <h2 class="subtitulo">Usuarios</h2>
+              </form>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <h2 class="subtitulo">Productos</h2>
           <table class="table">
               <thead>
                   <th>Id</th>
                   <th>Nombre</th>
-                  <th>Email</th>
-                  <th>Password</th>
+                  <th>precio</th>
+                  <th>enventario</th>
                   <th></th>
               </thead>
               <tbody>
@@ -140,39 +142,32 @@ $resultado= $conexion->query("select * from usuarios order by id DESC")or die($c
                   ?>
                   <tr>
                       <td><?php echo $fila['id'];  ?></td>
-                      <td><?php echo $fila['nombre'].' '.$fila['apellido']; ?></td>
-                      <td><?php echo $fila['email'];  ?></td>
-                      <td>********</td>
                       <td> 
-                          <button class="btn btn-sm btn-warning btnEdit" 
-                          data-toggle="modal"
-                          data-target="#modal-editar" 
-                          data-id="<?php echo $fila['id'];  ?>"
-                          data-nom="<?php echo $fila['nombre'];  ?>"
-                          data-ap="<?php echo $fila['apellido'];  ?>"
-                          data-email="<?php echo $fila['email'];  ?>" >
-                            <i class="fa fa-edit"></i>
-                          </button>
-                      </td>
-                      <td> 
-                          <button class="btn btn-sm btn-danger btnEliminar" data-toggle="modal" 
-                          data-target="#modal-eliminar" data-id="<?php echo $fila['id'];  ?>">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                      </td>
+                      <img src="./img/product/<?php echo $fila['imagen']?>" width="50px" height="50px" alt="">
+                      <?php echo $fila['nombre']?></td>
+                      <td><?php echo $fila['precio'];  ?></td>
+                      <td><?php echo $fila['inventario'];  ?></td>
+            
+  
                   </tr>
-                  <?php              
+
+                  <?php
+                  
               }
                   ?>
+
+
               </tbody>
           </table>
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <?php include "./layouts/footer.php"; ?>
-   <!--MODAL ELIMINAR-->
-   <div class="modal fade" id="modal-eliminar">
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <?php include "./layouts/footer.php"?>
+  
+    <!--MODAL ELIMINAR-->
+    <div class="modal fade" id="modal-eliminar">
           <div class="modal-dialog">
             <div class="modal-content bg-danger">
               <div class="modal-header">
@@ -250,25 +245,24 @@ $resultado= $conexion->query("select * from usuarios order by id DESC")or die($c
 
 
 
-
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="./dashboard/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="./dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="./dashboard/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="./dashboard/dist/js/demo.js"></script>
-<script>
+    
+    <!-- jQuery -->
+    <script src="../dashboard/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dashboard/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dashboard/dist/js/demo.js"></script>
+    <script>
       var idElimiar=0;  
       $(document).ready(function(){
       $(".btnEliminar").click(function(){
         idElimiar=$(this).data('id');
-      $('#idEliminar').val(idElimiar);  
-      });  
+        $('#idEliminar').val(idElimiar);
+        
+      }); 
+      
       $(".btnEdit").click(function(){
         var idEdit=$(this).data('id');
         var nombre=$(this).data('nom');
@@ -278,8 +272,14 @@ $resultado= $conexion->query("select * from usuarios order by id DESC")or die($c
         $('#apEdit').val(apellido);
         $('#emailEdit').val(email);
         $('#idEditar').val(idEdit);
+
       });
+
+
+
       });
+
     </script>
-</body>
+  </body>
 </html>
+
